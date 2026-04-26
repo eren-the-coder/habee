@@ -1,50 +1,120 @@
-# 🌟 **MyStreak – Suivi d’Habitudes Minimaliste & Puissant**
+# 🌱 Habee – Cultivez vos habitudes, un jour à la fois
 
-**MyStreak** est une **application web progressive (PWA)** simple, rapide et axée sur la discipline. Elle vous aide à construire et maintenir vos habitudes grâce au principe des **streaks** : chaque jour où vous validez une routine ajoute un 🔥… et l’objectif est de **ne jamais briser la chaîne**.
+**Habee** est une application web moderne de suivi d'habitudes, conçue pour vous aider à transformer vos petites actions quotidiennes en véritables rituels. Avec une interface épurée, des statistiques visuelles et une approche positive, elle vous accompagne sur la durée sans prise de tête.
 
-## 🎯 **Objectif**
+![Habee Preview](./docs/screenshots/hero.png)
 
-Renforcer la constance.
-Qu’il s’agisse de sport, lecture, révision, méditation ou finance : MyStreak transforme vos objectifs en un jeu motivant basé sur la régularité quotidienne.
+---
 
-## ✨ **Fonctionnalités**
+## ✨ Fonctionnalités principales
 
-* ✔️ **Gestion des routines** : créer, modifier, supprimer, personnaliser
-* 🔥 **Séries (streaks)** : série actuelle + meilleure série historique
-* 📆 **Calendrier visuel** : jours réussis (🔥) et manqués (🧊)
-* ⏱️ **Chronométrage de sessions** : nom + durée pour les routines basées sur le temps
-* 📊 **Statistiques avancées** : taux de complétion global et détaillé
-* 💾 **Persistance locale** : tout est stocké dans le navigateur (localStorage)
-* 💬 **Citations motivantes** à chaque lancement
-* 📱 **PWA** : installable sur téléphone, tablette et PC, fonctionne hors ligne
+### 📋 Gestion des habitudes
+- **Création personnalisée** : Nom, emoji et couleur pour chaque habitude
+- **Jours actifs** : Définissez les jours où l'habitude s'applique (ex: lundi/mercredi/vendredi)
+- **Objectifs hebdomadaires** : Fixez un nombre de fois par semaine (ex: 3 fois/semaine)
+- **Réorganisation** : Glisser-déposer pour classer par priorité
 
-## 🖼️ **Aperçus d'Interface**
+### 📊 Suivi visuel
+- **Vue Semaine** : Grille interactive des 7 jours avec validation en un clic
+- **Vue Mois** : Calendrier complet pour repérer les tendances
+- **Vue Année** : Vision d'ensemble type "heatmap" GitHub
 
-| Accueil                               | Statistiques                                   | Calendrier                           | Chronomètre                         |
-| ------------------------------------- | -------------------------------------------- | ------------------------------------- | ------------------------------------ |
-| ![Aperçu accueil](./previews/1-home.png) | ![Aperçu calendrier](./previews/2-details.png) | ![Aperçu chrono](./previews/3-details.png) | ![Aperçu stats](./previews/4-timer.png) |
+### 🔥 Motivation
+- **Séries (streaks)** : Suivi des jours consécutifs avec indicateur visuel
+- **Meilleure série** : Record personnel à battre
+- **Taux de réussite** : Pourcentage sur 30 jours glissants
+- **Citations inspirantes** : Nouvelle citation à chaque ouverture
 
-## 🛠️ **Technologies**
+### 🔒 Confidentialité
+- **100% local** : Aucune donnée envoyée sur un serveur
+- **LocalStorage** : Sauvegarde automatique dans votre navigateur
+- **Aucun compte requis** : Utilisation immédiate
 
-* **React + TypeScript**
-* **Vite**
-* **CSS Modules**
-* **react-router-dom**, **react-modal**, **react-icons**, **lucide-react**
-* **Context API** + classes de services (`RoutineManager`)
+---
 
-## 🚀 **Installation**
+## 📱 Captures d'écran
 
-```bash
-git clone https://github.com/ton-repo/mystreaks.git
-cd mystreaks
-npm install
-npm run dev
-```
+### Écran d'accueil – Liste des habitudes
+![Accueil](./docs/screenshots/home.png)
 
-Build de production :
+L'écran principal affiche :
+- Une citation inspirante aléatoire
+- Les filtres (Toutes / Non validées)
+- La liste des habitudes avec série actuelle
+- Indicateur visuel si fait aujourd'hui
 
-```bash
-npm run build
-npm run preview
-```
+---
 
+### Création d'une habitude
+![Création](./docs/screenshots/create.png)
+
+Formulaire intuitif pour créer une nouvelle habitude :
+- Nom de l'habitude
+- Emoji personnalisé
+- Couleur thématique
+- Jours d'application
+- Objectif hebdomadaire
+
+---
+
+### Vue Semaine
+![Vue Semaine](./docs/screenshots/week.png)
+
+Grille interactive des 7 jours :
+- Cliquez pour basculer entre fait/non fait
+- Navigation entre semaines
+- Couleurs vert (fait) / rouge (non fait)
+
+---
+
+### Vue Mois
+![Vue Mois](./docs/screenshots/month.png)
+
+Calendrier mensuel complet :
+- Vision globale du mois
+- Lecture seule
+- Repérage facile des tendances
+
+---
+
+### Vue Année
+![Vue Année](./docs/screenshots/year.png)
+
+Heatmap annuelle type GitHub :
+- Tous les mois visibles
+- Vision macro de la constance
+- Lecture seule
+
+---
+
+### Statistiques détaillées
+![Stats](./docs/screenshots/stats.png)
+
+Cartes de statistiques pour chaque habitude :
+- 🔥 Série actuelle
+- 🏆 Meilleure série historique
+- 🎯 Taux de réussite (30 jours)
+- 📈 Évolution
+
+---
+
+## 🛠️ Stack Technique
+
+| Technologie | Usage |
+|-------------|-------|
+| **React 18** | Framework UI |
+| **TypeScript** | Typage statique |
+| **Vite** | Build tool |
+| **Tailwind CSS** | Styling |
+| **Lucide React** | Icônes |
+| **LocalStorage** | Persistance |
+
+---
+
+## 🚀 Installation
+
+### Prérequis
+- Node.js 18+ 
+- npm ou yarn
+
+### Démarrage rapide

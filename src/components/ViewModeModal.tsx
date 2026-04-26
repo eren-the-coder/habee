@@ -8,7 +8,7 @@ interface ViewModeModalProps {
   currentMode: ViewMode;
 }
 
-const modes: { value: ViewMode; label: string; icon: React.ReactNode }[] = [
+const modes: { value: ViewMode; label: string; icon: any }[] = [
   { value: 'week', label: 'Vue semaine', icon: <Calendar className="w-5 h-5" /> },
   { value: 'month', label: 'Vue mois', icon: <CalendarDays className="w-5 h-5" /> },
   { value: 'year', label: 'Vue année', icon: <CalendarRange className="w-5 h-5" /> },

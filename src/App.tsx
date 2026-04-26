@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useHabits } from '../hooks/useHabits';
-import { getRandomQuote } from '../utils/quotes';
-import { Quote } from '../types';
-import { QuoteCard } from '../components/QuoteCard';
-import { HabitCard } from '../components/HabitCard';
-import { HabitDetail } from '../components/HabitDetail';
-import { HabitModal } from '../components/HabitModal';
-import { DeleteConfirmModal } from '../components/DeleteConfirmModal';
-import { EmptyState } from '../components/EmptyState';
+import { useHabits } from './hooks/useHabits';
+import { getRandomQuote } from './utils/quotes';
+import { Quote } from './types';
+import { QuoteCard } from './components/QuoteCard';
+import { HabitCard } from './components/HabitCard';
+import { HabitDetail } from './components/HabitDetail';
+import { HabitModal } from './components/HabitModal';
+import { DeleteConfirmModal } from './components/DeleteConfirmModal';
+import { EmptyState } from './components/EmptyState';
 import { Plus, CheckCircle, Filter } from 'lucide-react';
 
 export default function App() {
@@ -35,7 +35,7 @@ export default function App() {
     setQuote(getRandomQuote());
   }, []);
 
-  const selectedHabit = habits.find(h => h.id === selectedHabitId);
+  const selectedHabit = habits.find((h: any) => h.id === selectedHabitId);
   const filteredHabits = getFilteredHabits();
 
   const handleDragStart = useCallback((id: string) => (e: React.DragEvent) => {
@@ -157,19 +157,22 @@ export default function App() {
         <EmptyState onAdd={() => setShowCreateModal(true)} />
       ) : (
         <div className="space-y-3">
-          {filteredHabits.map(habit => (
-            <HabitCard
-              key={habit.id}
-              habit={habit}
-              onClick={() => setSelectedHabitId(habit.id)}
-              onDragStart={handleDragStart(habit.id)}
-              onDragEnd={handleDragEnd}
-              onDragOver={handleDragOver(habit.id)}
-              onDrop={handleDrop(habit.id)}
-              isDragging={draggedId === habit.id}
-              isDragOver={dragOverId === habit.id}
-            />
-          ))}
+          {(filteredHabits as any).map((habit: any) => {
+            const Card = HabitCard as any;
+            return (
+              <Card
+                key={habit.id}
+                habit={habit}
+                onClick={() => setSelectedHabitId(habit.id)}
+                onDragStart={handleDragStart(habit.id)}
+                onDragEnd={handleDragEnd}
+                onDragOver={handleDragOver(habit.id)}
+                onDrop={handleDrop(habit.id)}
+                isDragging={draggedId === habit.id}
+                isDragOver={dragOverId === habit.id}
+              />
+            );
+          })}
         </div>
       )}
 

@@ -27,20 +27,20 @@ export function useHabits() {
       weeklyGoal,
       bestStreak: 0,
     };
-    setHabits(prev => [...prev, newHabit]);
+    setHabits((prev: any) => [...prev, newHabit]);
     return newHabit;
   }, []);
 
   const updateHabit = useCallback((id: string, updates: Partial<Habit>) => {
-    setHabits(prev => prev.map(h => h.id === id ? { ...h, ...updates } : h));
+    setHabits((prev: any) => prev.map((h: any) => h.id === id ? { ...h, ...updates } : h));
   }, []);
 
   const deleteHabit = useCallback((id: string) => {
-    setHabits(prev => prev.filter(h => h.id !== id));
+    setHabits((prev: any) => prev.filter((h: any) => h.id !== id));
   }, []);
 
   const toggleDay = useCallback((habitId: string, dateStr: string) => {
-    setHabits(prev => prev.map(h => {
+    setHabits((prev: any) => prev.map((h: any) => {
       if (h.id !== habitId) return h;
       
       const currentStatus = h.history[dateStr];
@@ -61,9 +61,9 @@ export function useHabits() {
   }, []);
 
   const reorderHabits = useCallback((draggedId: string, targetId: string) => {
-    setHabits(prev => {
-      const draggedIndex = prev.findIndex(h => h.id === draggedId);
-      const targetIndex = prev.findIndex(h => h.id === targetId);
+    setHabits((prev: any) => {
+      const draggedIndex = prev.findIndex((h: any) => h.id === draggedId);
+      const targetIndex = prev.findIndex((h: any) => h.id === targetId);
       if (draggedIndex === -1 || targetIndex === -1) return prev;
       
       const newHabits = [...prev];
@@ -76,7 +76,7 @@ export function useHabits() {
   const getFilteredHabits = useCallback(() => {
     if (filter === 'unchecked') {
       const todayStr = getTodayYMD();
-      return habits.filter(h => h.history[todayStr] !== true);
+      return habits.filter((h: any) => h.history[todayStr] !== true);
     }
     return habits;
   }, [habits, filter]);

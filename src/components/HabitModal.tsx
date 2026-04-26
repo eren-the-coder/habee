@@ -63,7 +63,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e: any) => setName(e.target.value)}
               placeholder="Ex: Méditation, Sport..."
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
             />
@@ -76,7 +76,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
             <input
               type="text"
               value={emoji}
-              onChange={(e) => setEmoji(e.target.value.slice(0, 2))}
+              onChange={(e: any) => setEmoji(e.target.value.slice(0, 2))}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-2xl text-center"
             />
           </div>
@@ -132,7 +132,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
               min="1"
               max="7"
               value={weeklyGoal}
-              onChange={(e) => setWeeklyGoal(parseInt(e.target.value))}
+              onChange={(e: any) => setWeeklyGoal(parseInt(e.target.value))}
               className="w-full accent-blue-500"
             />
           </div>

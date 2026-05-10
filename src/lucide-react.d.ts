@@ -17,6 +17,8 @@ declare module 'lucide-react' {
   const CalendarDays: any;
   const CalendarRange: any;
   const Download: any;
+  const Moon: any;
+  const Sun: any;
   export {
     Plus,
     CheckCircle,
@@ -35,6 +37,8 @@ declare module 'lucide-react' {
     TrendingUp,
     CalendarDays,
     CalendarRange,
-    Download
+    Download,
+    Moon,
+    Sun,
   };
 }

@@ -8,7 +8,7 @@ import { HabitDetail } from './components/HabitDetail';
 import { HabitModal } from './components/HabitModal';
 import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 import { EmptyState } from './components/EmptyState';
-import { Plus, CheckCircle, Filter } from 'lucide-react';
+import { Plus, CheckCircle, Filter, Moon, Sun } from 'lucide-react';
 
 export default function App() {
   const {
@@ -30,10 +30,15 @@ export default function App() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [dragOverId, setDragOverId] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     setQuote(getRandomQuote());
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
 
   const selectedHabit = habits.find((h: any) => h.id === selectedHabitId);
   const filteredHabits = getFilteredHabits();
@@ -85,7 +90,7 @@ export default function App() {
   // Detail View
   if (selectedHabit) {
     return (
-      <div className="min-h-screen bg-slate-50 p-4 max-w-lg mx-auto">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 p-4 max-w-lg mx-auto">
         <HabitDetail
           habit={selectedHabit}
           onBack={() => setSelectedHabitId(null)}
@@ -93,7 +98,7 @@ export default function App() {
           onDelete={() => setShowDeleteModal(true)}
           onToggleDay={(dateStr) => toggleDay(selectedHabit.id, dateStr)}
         />
-        
+
         <HabitModal
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
@@ -101,7 +106,7 @@ export default function App() {
           habit={selectedHabit}
           title="Modifier l'habitude"
         />
-        
+
         <DeleteConfirmModal
           isOpen={showDeleteModal}
           onClose={() => setShowDeleteModal(false)}
@@ -114,14 +119,22 @@ export default function App() {
 
   // Home View
   return (
-    <div className="min-h-screen bg-slate-50 p-4 max-w-lg mx-auto pb-24">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 p-4 max-w-lg mx-auto pb-24">
       {/* Header */}
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-2">
-          <CheckCircle className="w-8 h-8 text-blue-500" />
-          Habee
-        </h1>
-        <p className="text-slate-500 mt-1">Cultivez vos habitudes, un jour à la fois</p>
+      <header className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+            <CheckCircle className="w-8 h-8 text-blue-500" />
+            Habee
+          </h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Cultivez vos habitudes, un jour à la fois</p>
+        </div>
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all"
+        >
+          {isDarkMode ? <Sun className="w-5 h-5 text-slate-600 dark:text-slate-300" /> : <Moon className="w-5 h-5 text-slate-600 dark:text-slate-300" />}
+        </button>
       </header>
 
       {/* Quote */}
@@ -131,22 +144,20 @@ export default function App() {
       <div className="flex gap-2 mb-6">
         <button
           onClick={() => setFilter('all')}
-          className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all flex items-center justify-center gap-2 ${
-            filter === 'all'
-              ? 'bg-blue-500 text-white shadow-lg'
-              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-          }`}
+          className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all flex items-center justify-center gap-2 ${filter === 'all'
+            ? 'bg-blue-500 text-white shadow-lg'
+            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+            }`}
         >
           <Filter className="w-4 h-4" />
           Toutes
         </button>
         <button
           onClick={() => setFilter('unchecked')}
-          className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all ${
-            filter === 'unchecked'
-              ? 'bg-blue-500 text-white shadow-lg'
-              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-          }`}
+          className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all ${filter === 'unchecked'
+            ? 'bg-blue-500 text-white shadow-lg'
+            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+            }`}
         >
           Non validées
         </button>

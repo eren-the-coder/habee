@@ -30,7 +30,10 @@ export default function App() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [dragOverId, setDragOverId] = useState<string | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem('habee-dark-mode') === 'true';
+  });
 
   useEffect(() => {
     setQuote(getRandomQuote());
@@ -38,6 +41,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkMode);
+    window.localStorage.setItem('habee-dark-mode', isDarkMode ? 'true' : 'false');
   }, [isDarkMode]);
 
   const selectedHabit = habits.find((h: any) => h.id === selectedHabitId);

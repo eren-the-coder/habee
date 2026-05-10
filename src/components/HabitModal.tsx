@@ -78,7 +78,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
             <input
               type="text"
               value={emoji}
-              onChange={(e: any) => setEmoji(e.target.value.slice(0, 2))}
+              onChange={(e: any) => setEmoji(e.target.value.slice(0, 1))}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-2xl text-center"
             />
           </div>

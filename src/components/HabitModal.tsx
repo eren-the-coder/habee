@@ -13,7 +13,7 @@ interface HabitModalProps {
 
 export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModalProps) {
   const [name, setName] = useState('');
-  const [emoji, setEmoji] = useState('⭐');
+  const [emoji, setEmoji] = useState('');
   const [color, setColor] = useState('emerald');
   const [activeDays, setActiveDays] = useState<number[]>([0, 1, 2, 3, 4, 5, 6]);
   const [weeklyGoal, setWeeklyGoal] = useState(7);
@@ -27,7 +27,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
       setWeeklyGoal(Math.min(habit.weeklyGoal, habit.activeDays.length) || 1);
     } else {
       setName('');
-      setEmoji('⭐');
+      setEmoji('');
       setColor('emerald');
       setActiveDays([0, 1, 2, 3, 4, 5, 6]);
       setWeeklyGoal(7);

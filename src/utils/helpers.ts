@@ -12,24 +12,38 @@ export function getTodayYMD(): string {
 }
 
 export function computeStreak(habit: Habit): number {
+  const today = new Date();
+  let currentDate = new Date(today);
   let streak = 0;
-  const currentDate = new Date();
-  const todayKey = formatYMD(currentDate);
+  let daysChecked = 0;
+  const maxDays = 365; // Prevent infinite loop
 
-  if (habit.history[todayKey] !== true) return 0;
+  // Find the most recent day that is checked
+  while (daysChecked < maxDays) {
+    const key = formatYMD(currentDate);
+    if (habit.history[key] === true) {
+      streak = 1;
+      break;
+    }
+    currentDate.setDate(currentDate.getDate() - 1);
+    daysChecked++;
+  }
 
-  streak = 1;
-  const checkDate = new Date(currentDate);
+  if (streak === 0) return 0;
 
-  while (true) {
-    checkDate.setDate(checkDate.getDate() - 1);
-    const key = formatYMD(checkDate);
+  // Now count consecutive days backwards from this day
+  const startDate = new Date(currentDate);
+  while (daysChecked < maxDays) {
+    startDate.setDate(startDate.getDate() - 1);
+    const key = formatYMD(startDate);
     if (habit.history[key] === true) {
       streak++;
     } else {
       break;
     }
+    daysChecked++;
   }
+
   return streak;
 }
 

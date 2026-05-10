@@ -36,11 +36,16 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
 
   const getFirstGrapheme = (value: string) => {
     if (!value) return '';
-    const Segmenter = (Intl as any).Segmenter;
-    if (typeof Segmenter === 'function') {
-      const segmenter = new Segmenter(undefined, { granularity: 'grapheme' });
-      const first = segmenter.segment(value).first();
-      return first?.segment ?? '';
+    try {
+      const Segmenter = (Intl as any).Segmenter;
+      if (typeof Segmenter === 'function') {
+        const segmenter = new Segmenter(undefined, { granularity: 'grapheme' });
+        for (const segment of segmenter.segment(value)) {
+          return (segment as any).segment;
+        }
+      }
+    } catch (e) {
+      // Fallback
     }
     return Array.from(value)[0] || '';
   };

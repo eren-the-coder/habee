@@ -16,6 +16,7 @@ declare module 'lucide-react' {
   const TrendingUp: any;
   const CalendarDays: any;
   const CalendarRange: any;
+  const Download: any;
   export {
     Plus,
     CheckCircle,
@@ -33,6 +34,7 @@ declare module 'lucide-react' {
     Target,
     TrendingUp,
     CalendarDays,
-    CalendarRange
+    CalendarRange,
+    Download
   };
 }

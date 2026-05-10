@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Habit, ViewMode } from '../types';
-import { getPeriodLabel, COLOR_CLASSES } from '../utils/helpers';
+import { getPeriodLabel, COLOR_CLASSES, exportHabitToJson } from '../utils/helpers';
 import { WeekView } from './WeekView';
 import { MonthView } from './MonthView';
 import { YearView } from './YearView';
 import { StatsCard } from './StatsCard';
 import { ViewModeModal } from './ViewModeModal';
-import { ArrowLeft, ChevronLeft, ChevronRight, Edit, Trash2, Calendar } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, Edit, Trash2, Calendar, Download } from 'lucide-react';
 
 interface HabitDetailProps {
   habit: Habit;
@@ -20,7 +20,7 @@ export function HabitDetail({ habit, onBack, onEdit, onDelete, onToggleDay }: Ha
   const [viewMode, setViewMode] = useState<ViewMode>('week');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [showViewModal, setShowViewModal] = useState(false);
-  
+
   const colors = COLOR_CLASSES[habit.color] || COLOR_CLASSES.emerald;
   const periodLabel = getPeriodLabel(currentDate, viewMode);
 
@@ -36,6 +36,10 @@ export function HabitDetail({ habit, onBack, onEdit, onDelete, onToggleDay }: Ha
     setCurrentDate(newDate);
   };
 
+  const handleExport = () => {
+    exportHabitToJson(habit);
+  };
+
   return (
     <div className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100 min-h-screen pb-8">
       {/* Header */}
@@ -46,7 +50,14 @@ export function HabitDetail({ habit, onBack, onEdit, onDelete, onToggleDay }: Ha
         >
           <ArrowLeft className="w-6 h-6 text-slate-600" />
         </button>
-        <div className="flex gap-1">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={handleExport}
+            className="p-2 rounded-full hover:bg-slate-100 transition-colors"
+            title="Exporter en JSON"
+          >
+            <Download className="w-5 h-5 text-slate-600" />
+          </button>
           <button
             onClick={onEdit}
             className="p-2 rounded-full hover:bg-slate-100 transition-all"

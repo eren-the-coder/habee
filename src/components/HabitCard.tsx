@@ -37,11 +37,11 @@ export function HabitCard({
       onDrop={onDrop}
       onClick={onClick}
       className={`
-        bg-white rounded-2xl p-4 flex items-center gap-4 shadow-sm
+        bg-white dark:bg-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm
         border cursor-grab active:cursor-grabbing transition-all duration-200
         ${isDragging ? 'opacity-40 scale-95' : ''}
-        ${isDragOver ? `border-2 border-dashed ${colors.border} ${colors.light}` : 'border-slate-100'}
-        hover:shadow-md hover:border-slate-200
+        ${isDragOver ? `border-2 border-dashed ${colors.border} ${colors.light}` : 'border-slate-100 dark:border-slate-700'}
+        hover:shadow-md hover:border-slate-200 dark:hover:border-slate-600
       `}
     >
       <div className={`
@@ -57,7 +57,7 @@ export function HabitCard({
       </div>
       
       <div className="flex-1 min-w-0">
-        <h3 className="font-semibold text-slate-800 text-lg truncate">{habit.name}</h3>
+        <h3 className="font-semibold text-slate-800 dark:text-slate-200 text-lg truncate">{habit.name}</h3>
         <div className="flex items-center gap-2 mt-1">
           {streak > 0 ? (
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-700">

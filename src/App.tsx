@@ -146,7 +146,7 @@ export default function App() {
           onClick={() => setFilter('all')}
           className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all flex items-center justify-center gap-2 ${filter === 'all'
             ? 'bg-blue-500 text-white shadow-lg'
-            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
         >
           <Filter className="w-4 h-4" />
@@ -156,7 +156,7 @@ export default function App() {
           onClick={() => setFilter('unchecked')}
           className={`flex-1 py-3 px-4 rounded-full font-semibold transition-all ${filter === 'unchecked'
             ? 'bg-blue-500 text-white shadow-lg'
-            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
         >
           Non validées

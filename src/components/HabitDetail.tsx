@@ -76,7 +76,7 @@ export function HabitDetail({ habit, onBack, onEdit, onDelete, onToggleDay }: Ha
       {/* Title */}
       <div className={`flex items-center justify-center gap-3 py-3 px-5 rounded-full mb-4 ${colors.light}`}>
         <span className="text-3xl">{habit.emoji}</span>
-        <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">{habit.name}</h2>
+        <h2 className="text-xl font-bold text-slate-800 dark:text-slate-800">{habit.name}</h2>
       </div>
 
       {/* Stats */}

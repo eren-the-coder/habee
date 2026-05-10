@@ -32,7 +32,7 @@ export function WeekView({ habit, onToggleDay, currentDate }: WeekViewProps) {
             cellClass = colors.notDone;
           }
 
-          const isActiveDay = habit.activeDays.includes(day.date.getDay());
+          const isActiveDay = habit.activeDays.includes((day.date.getDay() + 6) % 7);
           const isClickable = day.isPastOrToday && isActiveDay;
 
           return (

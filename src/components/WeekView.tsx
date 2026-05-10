@@ -20,20 +20,21 @@ export function WeekView({ habit, onToggleDay, currentDate }: WeekViewProps) {
           </div>
         ))}
       </div>
-      
+
       <div className="grid grid-cols-7 gap-2">
         {days.map((day) => {
           const status = habit.history[day.dateStr];
           let cellClass = 'bg-slate-50 text-slate-600 border-slate-200';
-          
+
           if (status === true) {
             cellClass = colors.done;
           } else if (status === false) {
             cellClass = colors.notDone;
           }
-          
-          const isClickable = day.isPastOrToday;
-          
+
+          const isActiveDay = habit.activeDays.includes(day.date.getDay());
+          const isClickable = day.isPastOrToday && isActiveDay;
+
           return (
             <button
               key={day.dateStr}

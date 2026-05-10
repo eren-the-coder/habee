@@ -269,7 +269,7 @@ export function exportHabitToJson(habit: Habit): void {
 
   const link = document.createElement('a');
   link.href = url;
-  link.download = `habee-${habit.name.toLowerCase().replace(/\s+/g, '-')}.json`;
+  link.download = `habitude-${habit.name.toLowerCase().replace(/\s+/g, '-')}.json`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

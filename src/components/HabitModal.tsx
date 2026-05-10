@@ -24,7 +24,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
       setEmoji(habit.emoji);
       setColor(habit.color);
       setActiveDays(habit.activeDays);
-      setWeeklyGoal(habit.weeklyGoal);
+      setWeeklyGoal(Math.min(habit.weeklyGoal, habit.activeDays.length) || 1);
     } else {
       setName('');
       setEmoji('⭐');
@@ -35,11 +35,13 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
   }, [habit, isOpen]);
 
   const toggleDay = (dayIndex: number) => {
-    setActiveDays(prev => 
-      prev.includes(dayIndex) 
-        ? prev.filter(d => d !== dayIndex)
-        : [...prev, dayIndex].sort()
-    );
+    const newActiveDays = activeDays.includes(dayIndex)
+      ? activeDays.filter(d => d !== dayIndex)
+      : [...activeDays, dayIndex].sort();
+    setActiveDays(newActiveDays);
+    if (weeklyGoal > newActiveDays.length) {
+      setWeeklyGoal(newActiveDays.length || 1);
+    }
   };
 
   const handleSave = () => {
@@ -54,7 +56,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-3xl w-full max-w-md p-6 shadow-2xl">
         <h3 className="text-xl font-bold text-slate-800 mb-6 text-center">{title}</h3>
-        
+
         <div className="space-y-5">
           <div>
             <label className="block text-sm font-semibold text-slate-600 mb-2">
@@ -68,7 +70,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-semibold text-slate-600 mb-2">
               Emoji
@@ -80,7 +82,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-2xl text-center"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-semibold text-slate-600 mb-2">
               Couleur
@@ -100,7 +102,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
               ))}
             </div>
           </div>
-          
+
           <div>
             <label className="block text-sm font-semibold text-slate-600 mb-2">
               Jours actifs
@@ -112,8 +114,8 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
                   onClick={() => toggleDay(i)}
                   className={`
                     px-3 py-2 rounded-lg text-sm font-medium transition-all
-                    ${activeDays.includes(i) 
-                      ? 'bg-blue-500 text-white' 
+                    ${activeDays.includes(i)
+                      ? 'bg-blue-500 text-white'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}
                   `}
                 >
@@ -122,7 +124,7 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
               ))}
             </div>
           </div>
-          
+
           <div>
             <label className="block text-sm font-semibold text-slate-600 mb-2">
               Objectif hebdomadaire : {weeklyGoal} jour{weeklyGoal > 1 ? 's' : ''}
@@ -130,14 +132,14 @@ export function HabitModal({ isOpen, onClose, onSave, habit, title }: HabitModal
             <input
               type="range"
               min="1"
-              max="7"
+              max={activeDays.length || 1}
               value={weeklyGoal}
               onChange={(e: any) => setWeeklyGoal(parseInt(e.target.value))}
               className="w-full accent-blue-500"
             />
           </div>
         </div>
-        
+
         <div className="flex gap-3 mt-6">
           <button
             onClick={onClose}

@@ -42,10 +42,10 @@ export function useHabits() {
   const toggleDay = useCallback((habitId: string, dateStr: string) => {
     setHabits((prev: any) => prev.map((h: any) => {
       if (h.id !== habitId) return h;
-      
+
       const currentStatus = h.history[dateStr];
       const newHistory = { ...h.history };
-      
+
       if (currentStatus === undefined) {
         newHistory[dateStr] = false;
       } else if (currentStatus === false) {
@@ -53,9 +53,9 @@ export function useHabits() {
       } else {
         delete newHistory[dateStr];
       }
-      
-      const newBestStreak = Math.max(h.bestStreak, computeBestStreak({ ...h, history: newHistory }));
-      
+
+      const newBestStreak = computeBestStreak({ ...h, history: newHistory });
+
       return { ...h, history: newHistory, bestStreak: newBestStreak };
     }));
   }, []);
@@ -65,7 +65,7 @@ export function useHabits() {
       const draggedIndex = prev.findIndex((h: any) => h.id === draggedId);
       const targetIndex = prev.findIndex((h: any) => h.id === targetId);
       if (draggedIndex === -1 || targetIndex === -1) return prev;
-      
+
       const newHabits = [...prev];
       const [draggedItem] = newHabits.splice(draggedIndex, 1);
       newHabits.splice(targetIndex, 0, draggedItem);

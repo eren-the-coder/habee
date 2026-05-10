@@ -4,10 +4,11 @@ import { getWeekDays, DAY_NAMES, COLOR_CLASSES } from '../utils/helpers';
 interface WeekViewProps {
   habit: Habit;
   onToggleDay: (dateStr: string) => void;
+  currentDate: Date;
 }
 
-export function WeekView({ habit, onToggleDay }: WeekViewProps) {
-  const days = getWeekDays(new Date());
+export function WeekView({ habit, onToggleDay, currentDate }: WeekViewProps) {
+  const days = getWeekDays(currentDate);
   const colors = COLOR_CLASSES[habit.color] || COLOR_CLASSES.emerald;
 
   return (

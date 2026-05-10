@@ -115,7 +115,7 @@ export function HabitDetail({ habit, onBack, onEdit, onDelete, onToggleDay }: Ha
 
       {/* Calendar View */}
       {viewMode === 'week' && (
-        <WeekView habit={habit} onToggleDay={onToggleDay} />
+        <WeekView habit={habit} onToggleDay={onToggleDay} currentDate={currentDate} />
       )}
       {viewMode === 'month' && (
         <MonthView habit={habit} year={currentDate.getFullYear()} month={currentDate.getMonth()} />
